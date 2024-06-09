@@ -1,4 +1,3 @@
-
 import { CircleUserRound, Menu } from "lucide-react";
 import {
   Sheet,
@@ -28,7 +27,7 @@ const MobileNav = () => {
               {user?.email}
             </span>
           ) : (
-            <span> Welcome to MernEats.com!</span>
+            <span> Welcome to FoodOrder!</span>
           )}
         </SheetTitle>
         <Separator />
