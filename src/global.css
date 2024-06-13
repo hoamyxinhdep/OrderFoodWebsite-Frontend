@@ -36,33 +36,34 @@
     }
 
     .dark {
-      --background: 222.2 84% 4.9%;
-      --foreground: 210 40% 98%;
+      --background: 0 0% 20%; /* dark orange background */
+  --foreground:   0 10% 90%; /* light grey foreground */
 
-      --card: 222.2 84% 4.9%;
-      --card-foreground: 210 40% 98%;
+  --card: 30 100% 15%; /* slightly lighter dark orange card background */
+  --card-foreground: 0 0% 0%; /* light grey card foreground */
 
-      --popover: 222.2 84% 4.9%;
-      --popover-foreground: 210 40% 98%;
+  --popover: 30 100% 15%; /* same as card background */
+  --popover-foreground: 0 0% 90%; /* same as card foreground */
 
-      --primary: 210 40% 98%;
-      --primary-foreground: 222.2 47.4% 11.2%;
+  --primary: 30 100% 50%; /* orange primary */
+  --primary-foreground: 0 0% 0%; /* dark grey primary foreground */
 
-      --secondary: 217.2 32.6% 17.5%;
-      --secondary-foreground: 210 40% 98%;
+  --secondary: 30 100% 30%; /* medium orange secondary */
+  --secondary-foreground: 0 0% 0%; /* light grey secondary foreground */
 
-      --muted: 217.2 32.6% 17.5%;
-      --muted-foreground: 215 20.2% 65.1%;
+  --muted: 30 100% 30%; /* same as secondary background */
+  --muted-foreground: 0 0% 0%; /* medium light grey muted foreground */
 
-      --accent: 217.2 32.6% 17.5%;
-      --accent-foreground: 210 40% 98%;
+  --accent: 30 100% 30%; /* same as secondary background */
+  --accent-foreground: 0 0% 0%; /* same as secondary foreground */
 
-      --destructive: 0 62.8% 30.6%;
-      --destructive-foreground: 210 40% 98%;
+  --destructive: 0 100% 40%; /* bright orange destructive */
+  --destructive-foreground: 0 0% 90%; /* light grey destructive foreground */
 
-      --border: 217.2 32.6% 17.5%;
-      --input: 217.2 32.6% 17.5%;
-      --ring: 212.7 26.8% 83.9%;
+  --border: 30 100% 30%; /* same as secondary background */
+  --input: 30 100% 30%; /* same as secondary background */
+  --ring: 30 100% 70%; /* l
+  ight orange ring */
     }
   }
 
