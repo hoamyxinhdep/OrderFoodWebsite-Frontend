@@ -63,3 +63,17 @@ export type RestaurantSearchResponse = {
     pages: number;
   };
 };
+
+export type Review = {
+  avatar: string;
+  name: string;
+  date: string;
+  cmt: string;
+};
+
+export type Reply = {
+  avatar: string;
+  name: string;
+  date: string;
+  text: string;
+};
