@@ -168,26 +168,28 @@ const DetailPage = () => {
           </div>
         </div>
       </div>
-      <div className="md:px-32">
-        <div className="flex flex-col gap-4 mt-4">
-          <span className="text-2xl font-bold tracking-tight">Review</span>
-          <div>
-            {Reviewlist.map((review, index) => (
-              <ListReview key={index} review={review} />
-            ))}
+      <div>
+        <div className="md:px-32">
+          <div className="flex flex-col gap-4 mt-4">
+            <span className="text-2xl font-bold tracking-tight">Review</span>
+            <div className="border p-4 rounded-xl md:h-[640px] overflow-auto bg-slate-900">
+              {Reviewlist.map((review, index) => (
+                <ListReview key={index} review={review} />
+              ))}
+            </div>
           </div>
         </div>
-      </div>
-      <div className="md:px-32">
-        <div className="flex flex-col gap-4 mt-4">
-          <textarea
-            className="border rounded p-2"
-            placeholder="Input your comment here"
-            style={{ resize: "none" }}
-          />
-        </div>
-        <div className="flex justify-end mt-4">
-          <Button>Submit</Button>
+        <div className="md:px-32">
+          <div className="flex flex-col gap-4 mt-4">
+            <textarea
+              className="border rounded p-2"
+              placeholder="Input your comment here"
+              style={{ resize: "none" }}
+            />
+          </div>
+          <div className="flex justify-end mt-4">
+            <Button>Submit</Button>
+          </div>
         </div>
       </div>
     </div>

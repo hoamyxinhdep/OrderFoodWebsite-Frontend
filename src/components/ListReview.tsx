@@ -1,5 +1,6 @@
 import { Reply, Review } from "@/types";
 import { useState } from "react";
+import { Input } from "./ui/input";
 
 type Props = {
   review: Review;
@@ -22,8 +23,8 @@ const ListReview = ({ review }: Props) => {
   };
 
   return (
-    <div className="border p-4 rounded shadow-md">
-      <div className="flex items-start gap-4">
+    <div className="p-4 rounded-xl">
+      <div className="flex items-start gap-4 text-white">
         <div className="flex-shrink-0">
           <img
             src={review.avatar}
@@ -32,30 +33,31 @@ const ListReview = ({ review }: Props) => {
           />
         </div>
         <div className="flex flex-col flex-grow">
-          <span className="text-lg font-bold mb-2">{review.name}</span>
-          <div className="text-lg">{review.cmt}</div>
-          <div>
-            <span className="text-sm text-gray-600 mt-2">{review.date}</span>
-            <button
-              className="mt-4 ml-6 text-blue-500 hover:underline"
-              onClick={handleReplyClick}
-            >
-              Reply
-            </button>
-            {isReplying && (
-              <div className="mt-4 ">
-                <textarea
-                  className="w-full border rounded p-2"
-                  placeholder="Input your reply here"
-                  style={{ resize: "none" }}
-                />
-                <button className="mt-2 px-4 py-2 bg-blue-500 text-white rounded">
-                  Submit
-                </button>
-              </div>
-            )}
+          <div className="border p-4 rounded-xl shadow-md bg-slate-700">
+            <span className="text-base font-bold mb-2">{review.name}</span>
+            <div className="text-base">{review.cmt}</div>
+            <div>
+              <span className="text-sm text-gray-200 mt-2">{review.date}</span>
+              <button
+                className=" ml-6 text-blue-500 hover:underline"
+                onClick={handleReplyClick}
+              >
+                Reply
+              </button>
+              {isReplying && (
+                <div className="mt-4 ">
+                  <Input
+                    className="w-full border rounded p-2"
+                    placeholder="Input your reply here"
+                  />
+                  <button className="mt-2 px-4 py-2 bg-blue-500 text-white rounded ">
+                    Submit
+                  </button>
+                </div>
+              )}
+            </div>
           </div>
-          <div>
+          <div className="mt-4">
             {Replylist.map((reply, index) => (
               <ListReply key={index} reply={reply} />
             ))}
@@ -75,11 +77,11 @@ const ListReply = ({ reply }: Props) => {
           className="w-16 h-16 rounded-full"
         />
       </div>
-      <div className="flex flex-col flex-grow">
-        <span className="text-lg font-bold mb-2">{reply.name}</span>
-        <div className="text-lg">{reply.text}</div>
+      <div className="flex flex-col flex-grow border p-4 rounded-xl shadow-md bg-slate-700">
+        <span className="text-base font-bold mb-2">{reply.name}</span>
+        <div className="text-base">{reply.text}</div>
         <div>
-          <span className="text-sm text-gray-600 mt-2">{reply.date}</span>
+          <span className="text-sm text-gray-200 mt-2">{reply.date}</span>
         </div>
       </div>
     </div>
