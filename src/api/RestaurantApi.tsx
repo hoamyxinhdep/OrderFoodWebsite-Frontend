@@ -1,6 +1,8 @@
 import { SearchState } from "@/pages/SearchPage";
-import { Restaurant, RestaurantSearchResponse } from "@/types";
-import { useQuery } from "react-query";
+import { Reply, Restaurant, RestaurantSearchResponse, Review } from "@/types";
+import { useAuth0 } from "@auth0/auth0-react";
+import { useMutation, useQuery } from "react-query";
+import { toast } from "sonner";
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
@@ -60,4 +62,166 @@ export const useSearchRestaurants = (
     results,
     isLoading,
   };
+};
+
+export const useGetReviews = (restaurantId?: string) => {
+  const getReviewByRestaurantId = async (): Promise<Review[]> => {
+    const response = await fetch(
+      `${API_BASE_URL}/api/review/restaurant/${restaurantId}`
+    );
+
+    if (!response.ok) {
+      throw new Error("Failed to get review");
+    }
+
+    return response.json();
+  };
+
+  const {
+    data: reviews,
+    isLoading,
+    refetch,
+  } = useQuery("fetchReview", getReviewByRestaurantId);
+
+  return { reviews, isLoading, refetch };
+};
+
+export const useCreateReviews = (restaurantId?: string) => {
+  const { getAccessTokenSilently } = useAuth0();
+  const createReview = async (comment: FormData): Promise<Review[]> => {
+    const accessToken = await getAccessTokenSilently();
+    const commentJson = Object.fromEntries(comment.entries());
+    const response = await fetch(`${API_BASE_URL}/api/review/${restaurantId}`, {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(commentJson),
+    });
+
+    if (!response.ok) {
+      throw new Error("Failed to create review");
+    }
+
+    return response.json();
+  };
+
+  const {
+    mutate: createComment,
+    isLoading,
+    error,
+  } = useMutation(createReview);
+
+  if (error) {
+    toast.error("Unable to post comment");
+  }
+
+  return { createComment, isLoading };
+};
+
+export const useCreateReply = (commentId?: string) => {
+  const { getAccessTokenSilently } = useAuth0();
+  const createReply = async (text: FormData): Promise<Reply[]> => {
+    const accessToken = await getAccessTokenSilently();
+    const commentJson = Object.fromEntries(text.entries());
+    const response = await fetch(`${API_BASE_URL}/api/review/reply/${commentId}`, {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(commentJson),
+    });
+
+    if (!response.ok) {
+      throw new Error("Failed to create reply");
+    }
+
+    return response.json();
+  };
+
+  const {
+    mutate: createReplies,
+    isLoading,
+    error,
+  } = useMutation(createReply);
+
+  if (error) {
+    toast.error("Unable to post reply");
+  }
+
+  return { createReplies, isLoading };
+};
+
+export const useUpdateReview = (commentId?: string) => {
+  const { getAccessTokenSilently } = useAuth0();
+  const updateReview = async (comment: FormData): Promise<Restaurant> => {
+    const accessToken = await getAccessTokenSilently();
+    const commentJson = Object.fromEntries(comment.entries());
+    const response = await fetch(
+      `${API_BASE_URL}/api/review/update/${commentId}`,
+      {
+        method: "PATCH",
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(commentJson),
+      }
+    );
+
+    if (!response) {
+      throw new Error("Failed to update comment");
+    }
+
+    return response.json();
+  };
+
+  const {
+    mutate: updateComment,
+    isLoading,
+    error,
+  } = useMutation(updateReview);
+
+
+  if (error) {
+    toast.error("Unable to update comment");
+  }
+
+  return { updateComment, isLoading };
+};
+
+export const useDeleteReviews = (commentId?: string) => {
+  const { getAccessTokenSilently } = useAuth0();
+  const deleteReview = async (): Promise<Restaurant> => {
+    const accessToken = await getAccessTokenSilently();
+    const response = await fetch(
+      `${API_BASE_URL}/api/review/delete/${commentId}`,
+      {
+        method: "DELETE",
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        }
+      }
+    );
+
+    if (!response) {
+      throw new Error("Failed to delete comment");
+    }
+
+    return response.json();
+  };
+
+  const {
+    mutate: deleteComment,
+    isLoading,
+    error,
+  } = useMutation(deleteReview);
+
+  if (error) {
+    toast.error("Unable to delete comment");
+  }
+
+  return {deleteComment, isLoading };
 };

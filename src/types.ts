@@ -63,3 +63,19 @@ export type RestaurantSearchResponse = {
     pages: number;
   };
 };
+
+export type Review = {
+  _id:string;
+  avatar: string;
+  user: User;
+  createdAt: string;
+  comment: string;
+  replies: Reply[];
+};
+
+export type Reply = {
+  avatar: string;
+  user: User;
+  createdAt: string;
+  text: string;
+};
