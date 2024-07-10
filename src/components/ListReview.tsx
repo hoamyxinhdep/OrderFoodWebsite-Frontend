@@ -5,9 +5,10 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEdit } from "@fortawesome/free-solid-svg-icons";
 import {
   useCreateReply,
+  useCreateUpdateReview,
   useDeleteReviews,
-  useUpdateReview,
 } from "@/api/RestaurantApi";
+import { useParams } from "react-router-dom";
 
 type Props = {
   review: Review;
@@ -18,11 +19,12 @@ type PropsRep = {
 };
 
 const ListReview = ({ review, refetch }: Props) => {
+  const { restaurantId } = useParams();
   const [isReplying, setIsReplying] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
   const [reply, setReply] = useState<string>();
   const [currentReview, setCurrentReview] = useState(review.comment);
-  const { updateComment } = useUpdateReview(review._id);
+  const { createComment } = useCreateUpdateReview(restaurantId);
   const { createReplies } = useCreateReply(review._id);
   const { deleteComment } = useDeleteReviews(review._id);
   const handleReplyClick = () => {
@@ -37,7 +39,7 @@ const ListReview = ({ review, refetch }: Props) => {
       createReplies(formData);
       setTimeout(() => {
         refetch();
-      }, 1000);
+      }, 800);
       setReply("");
       setIsReplying(false);
     }
@@ -52,11 +54,11 @@ const ListReview = ({ review, refetch }: Props) => {
     if (currentReview && currentReview !== "") {
       const formData = new FormData();
       formData.append("comment", currentReview);
-      updateComment(formData);
+      createComment(formData);
       setIsEditing(false);
       setTimeout(() => {
         refetch();
-      }, 1000);
+      }, 800);
     }
   };
 
