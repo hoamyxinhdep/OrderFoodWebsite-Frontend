@@ -1,5 +1,5 @@
 import {
-  useCreateReviews,
+  useCreateUpdateReview,
   useGetRestaurant,
   useGetReviews,
 } from "@/api/RestaurantApi";
@@ -33,7 +33,7 @@ const DetailPage = () => {
   const { reviews, refetch } = useGetReviews(restaurantId);
   const { createCheckoutSession, isLoading: isCheckoutLoading } =
     useCreateCheckoutSession();
-  const { createComment } = useCreateReviews(restaurantId);
+  const { createComment } = useCreateUpdateReview(restaurantId);
 
   const [cartItems, setCartItems] = useState<CartItem[]>(() => {
     const storedCartItems = sessionStorage.getItem(`cartItems-${restaurantId}`);
