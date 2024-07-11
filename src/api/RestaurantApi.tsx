@@ -144,11 +144,7 @@ export const useCreateUpdateReview = (restaurantId?: string) => {
     return response.json();
   };
 
-  const { mutate: createComment, isLoading, isSuccess } = useMutation(updateReview);
-
-   if (isSuccess) {
-     toast.success("Comment Created");
-   }
+  const { mutate: createComment, isLoading} = useMutation(updateReview);
 
   return { createComment, isLoading };
 };
