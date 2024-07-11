@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 const Footer = () => {
     return (
       <div className="bg-orange-500 py-10">
@@ -6,6 +8,11 @@ const Footer = () => {
             OrderFood
           </span>
           <span className="text-white font-bold tracking-tight flex gap-4">
+            <Link
+              to="/contact-us"
+            >
+             Contact Us
+            </Link>
             <span>Privacy Policy</span>
             <span>Terms of Service</span>
           </span>

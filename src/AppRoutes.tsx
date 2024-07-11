@@ -8,6 +8,7 @@ import ManageRestaurantPage from "./pages/ManageRestaurantPage";
 import SearchPage from "./pages/SearchPage";
 import DetailPage from "./pages/DetailPage";
 import OrderStatusPage from "./pages/OrderStatusPage";
+import ContactUs from "./components/ContactUs";
 const AppRoutes = () => {
   return (
     <Routes>
@@ -42,6 +43,14 @@ const AppRoutes = () => {
           element={
             <Layout>
               <OrderStatusPage />
+            </Layout>
+          }
+        />
+        <Route
+          path="/contact-us"
+          element={
+            <Layout>
+              <ContactUs />
             </Layout>
           }
         />
