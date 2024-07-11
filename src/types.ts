@@ -5,6 +5,8 @@ export type User = {
   addressLine1: string;
   city: string;
   country: string;
+  phone: string;
+  avatarUrl: string;
 };
 
 export type MenuItem = {

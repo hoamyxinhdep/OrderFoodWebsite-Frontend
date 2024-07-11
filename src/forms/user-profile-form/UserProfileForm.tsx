@@ -22,6 +22,7 @@ const formSchema = z.object({
   addressLine1: z.string().min(1, "Address Line 1 is required"),
   city: z.string().min(1, "City is required"),
   country: z.string().min(1, "Country is required"),
+  phone: z.string().min(10, "Phone number is required and should be at least 10 characters"), // Added phone field to schema
 });
 
 export type UserFormData = z.infer<typeof formSchema>;
@@ -130,6 +131,21 @@ const UserProfileForm = ({
             )}
           />
         </div>
+
+        <FormField
+          control={form.control}
+          name="phone"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Phone</FormLabel>
+              <FormControl>
+                <Input {...field} className="bg-white" />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+
         {isLoading ? (
           <LoadingButton />
         ) : (
