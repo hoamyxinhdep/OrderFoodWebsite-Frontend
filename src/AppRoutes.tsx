@@ -8,7 +8,7 @@ import ManageRestaurantPage from "./pages/ManageRestaurantPage";
 import SearchPage from "./pages/SearchPage";
 import DetailPage from "./pages/DetailPage";
 import OrderStatusPage from "./pages/OrderStatusPage";
-
+import ContactUs from "./components/ContactUs";
 const AppRoutes = () => {
   return (
     <Routes>
@@ -46,7 +46,6 @@ const AppRoutes = () => {
             </Layout>
           }
         />
-     
         <Route
           path="/user-profile"
           element={

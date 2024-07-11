@@ -3,6 +3,7 @@ import { Button } from "./ui/button";
 import UsernameMenu from "./UsernameMenu";
 import { Link } from "react-router-dom";
 import { Moon, Sun } from "lucide-react";
+import { FaCartShopping } from "react-icons/fa6";
 
 import {
   DropdownMenu,
@@ -20,7 +21,7 @@ const MainNav = () => {
     <span className="flex space-x-2 items-center">
       {isAuthenticated ? (
         <>
-          <DropdownMenu>
+          <DropdownMenu >
             <DropdownMenuTrigger asChild>
               <Button variant="outline" size="icon">
                 <Sun className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
@@ -38,7 +39,7 @@ const MainNav = () => {
             </DropdownMenuContent>
           </DropdownMenu>
           <Link to="/order-status" className="font-bold hover:text-orange-500">
-            Order Status
+            <FaCartShopping style={{ fontSize: "24px" }} />
           </Link>
           <UsernameMenu />
         </>
