@@ -37,6 +37,14 @@ const AppRoutes = () => {
           </Layout>
         }
       />
+      <Route
+        path="/contact-us"
+        element={
+          <Layout>
+            <ContactUs />
+          </Layout>
+        }
+      />
       <Route element={<ProtectedRoute />}>
         <Route
           path="/order-status"
