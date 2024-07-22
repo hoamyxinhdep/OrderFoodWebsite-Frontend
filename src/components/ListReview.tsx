@@ -74,7 +74,7 @@ const ListReview = ({ review, refetch }: Props) => {
       <div className="flex items-start gap-4">
         <div className="flex-shrink-0">
           <img
-            src={review.avatar}
+            src="../public/image/avatar.jpg"
             alt="Avatar"
             className="w-16 h-16 rounded-full"
           />
@@ -159,7 +159,7 @@ const ListReply = ({ reply }: PropsRep) => {
     <div className="flex items-start gap-4">
       <div className="flex-shrink-0">
         <img
-          src={reply.avatar}
+          src="../public/image/avatar.jpg"
           alt="Avatar"
           className="w-16 h-16 rounded-full"
         />

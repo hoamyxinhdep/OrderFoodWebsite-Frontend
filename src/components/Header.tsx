@@ -17,7 +17,6 @@ export default function Header() {
             <div className="md:hidden">
               <MobileNav />
           </div>
-          <Link to="/about-us">About Us</Link>
             <div className="hidden md:block mr-10">
               <MainNav />
             </div>
